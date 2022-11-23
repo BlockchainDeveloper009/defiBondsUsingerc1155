@@ -9,6 +9,28 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "./Vault.sol";
 
 contract MoneyMarketFactory is ERC1155, ERC1155Holder, Vault {
+    mapping(address => uint) balances;
+    mapping(address => mapping(address => bool)) approved;
+    
+    function manipulateMapOfMap(spender) external {
+        approved[msg.sender][spender] = true                     //assign a value to the approved map
+        approved[msg.sender][spender];                           //get the value of the map
+        
+        delete approved[msg.sender][spender]                     //delete the reference
+    }
+      mapping(address => uint[]) scores;    
+    
+    function manipulateArrayMap() external {
+        scores[msg.sender].push(1);             //assign a value; 
+        scores[msg.sender].push(2);             //assign another element
+        
+        scores[msg.sender][0];                  //access the element in the map array
+        
+        scores[msg.sender][1] = 5;              //update an element in the map array in index 1
+        
+        delete scores[msg.sender][0];           //delete the element in the index 0 of the map array
+    }
+
     function supportsInterface(bytes4 interfaceId)
         public
         view
